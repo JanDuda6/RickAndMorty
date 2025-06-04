@@ -14,13 +14,8 @@ struct DetailsListRepositoryClient: DependencyKey {
 
     static var liveValue: Self {
         return DetailsListRepositoryClient(
-            fetchCharacterDetailsList: { character in
-                let repo = CharacterDetailsListRepository(character: character)
-                return repo.getDetailsList()
-            }, fetchEpisodeDetailsList: { episode in
-                let repo = EpisodeDetailsListRepository(episode: episode)
-                return repo.getDetailsList()
-            }
+            fetchCharacterDetailsList: { getDetailsList(character: $0) },
+            fetchEpisodeDetailsList: { getEpisodeDetailsList(episode: $0) }
         )
     }
 }
@@ -32,5 +27,25 @@ extension DependencyValues {
         } set {
             self[DetailsListRepositoryClient.self] = newValue
         }
+    }
+}
+
+extension DetailsListRepositoryClient {
+    static func getDetailsList(character: Character) -> [DetailsList] {
+        [
+            DetailsList(icon: "cross", title: character.status, subtitle: "Status", isClicable: false),
+            DetailsList(icon: "person.fill", title: character.gender, subtitle: "Gender", isClicable: false),
+            DetailsList(icon: "house", title: character.origin.name, subtitle: "Origin", isClicable: false),
+            DetailsList(icon: "globe.europe.africa", title: character.location.name, subtitle: "Location", isClicable: false),
+        ]
+    }
+
+    static func getEpisodeDetailsList(episode: Episode) -> [DetailsList] {
+        [
+            DetailsList(icon: "movieclapper", title: episode.name, subtitle: "Title", isClicable: false),
+            DetailsList(icon: "calendar", title: episode.airDate, subtitle: "Air Date", isClicable: false),
+            DetailsList(icon: "info.bubble.fill", title: episode.episodeAndSeasonNumber, subtitle: "Episode and Season", isClicable: false),
+            DetailsList(icon: "person.fill", title: String(episode.characters.count), subtitle: "Characters count", isClicable: false),
+        ]
     }
 }

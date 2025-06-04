@@ -22,6 +22,8 @@ struct DetailsListView: View {
     }
 }
 
-#Preview {
-    DetailsListView(sectionTitle: "Details", detailsList: MockModels.detailsList)
-}
+#if DEBUG
+    #Preview {
+        DetailsListView(sectionTitle: "Details", detailsList: MockModels.detailsList)
+    }
+#endif

@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct CharacterList: View {
-    @StateObject var store: StoreOf<CharacterListReducer>
+    var store: StoreOf<CharacterListReducer>
     let columns = [GridItem(.flexible(), spacing: 5), GridItem(.flexible(), spacing: 5), GridItem(.flexible(), spacing: 5)]
 
     var body: some View {
@@ -34,20 +34,21 @@ struct CharacterList: View {
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: "chevron.backward")
-                            .foregroundColor(Color.rickAndMortyGreen)
                         Text("Back")
-                            .foregroundColor(Color.rickAndMortyGreen)
                     }
+                    .foregroundStyle(Color.rickAndMortyGreen)
                 }
             }
         }
     }
 }
 
-#Preview {
-    let store = Store(
-        initialState: CharacterListReducer.State()) {
-            CharacterListReducer()
-        }
-    CharacterList(store: store)
-}
+#if DEBUG
+    #Preview {
+        let store = Store(
+            initialState: CharacterListReducer.State()) {
+                CharacterListReducer()
+            }
+        CharacterList(store: store)
+    }
+#endif

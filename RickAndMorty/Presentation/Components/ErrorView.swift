@@ -37,6 +37,8 @@ struct ErrorView: View {
     }
 }
 
-#Preview {
-    ErrorView(action: {})
-}
+#if DEBUG
+    #Preview {
+        ErrorView(action: {})
+    }
+#endif

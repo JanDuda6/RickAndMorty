@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WelcomeView: View {
-    @StateObject var store: StoreOf<CharacterListReducer>
+    var store: StoreOf<CharacterListReducer>
 
     var body: some View {
         ZStack {
@@ -47,10 +47,12 @@ struct WelcomeView: View {
     }
 }
 
-#Preview {
-    let store = Store(
-        initialState: CharacterListReducer.State()) {
-            CharacterListReducer()
-        }
-    WelcomeView(store: store)
-}
+#if DEBUG
+    #Preview {
+        let store = Store(
+            initialState: CharacterListReducer.State()) {
+                CharacterListReducer()
+            }
+        WelcomeView(store: store)
+    }
+#endif

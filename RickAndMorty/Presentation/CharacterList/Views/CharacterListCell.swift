@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CharacterListCell: View {
     let character: Character
-    @StateObject var store: StoreOf<CharacterListReducer>
+    var store: StoreOf<CharacterListReducer>
 
     var body: some View {
         NavigationLink {
@@ -39,8 +39,7 @@ struct CharacterListCell: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                        .padding(.top, 10)
-                        .padding(.leading, 10)
+                        .padding([.top, .leading], 10)
                         .foregroundColor(character.isFavorite ?? false ? .red : .white)
                         .shadow(radius: 3)
                 }
@@ -71,11 +70,13 @@ struct CharacterListCell: View {
     }
 }
 
-#Preview {
-    let characters = [MockModels.character, MockModels.character, MockModels.character]
-    let store = Store(
-        initialState: CharacterListReducer.State(characters: characters, dataState: .loaded)) {
-            CharacterListReducer()
-        }
-    CharacterListCell(character: MockModels.character, store: store).frame(width: UIScreen.main.bounds.width / 3)
-}
+#if DEBUG
+    #Preview {
+        let characters = [MockModels.character, MockModels.character, MockModels.character]
+        let store = Store(
+            initialState: CharacterListReducer.State(characters: characters, dataState: .loaded)) {
+                CharacterListReducer()
+            }
+        CharacterListCell(character: MockModels.character, store: store).frame(width: UIScreen.main.bounds.width / 3)
+    }
+#endif

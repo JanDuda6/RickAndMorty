@@ -7,10 +7,8 @@
 
 import Foundation
 
-class Decoder {
-    static let shared = Decoder()
-
-    func decode<T: Codable>(from data: Data?) -> T? {
+struct Decoder {
+    static func decode<T: Codable>(from data: Data?) -> T? {
         guard let data else { return nil }
         do {
             let model = try JSONDecoder().decode(T.self, from: data)

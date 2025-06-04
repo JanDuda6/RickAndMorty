@@ -7,10 +7,8 @@
 
 import Foundation
 
-class ApiRequester {
-    static let shared = ApiRequester()
-
-    func fetchResponse(url: String? = nil) async throws -> Data? {
+struct ApiRequester {
+    static func fetchResponse(url: String? = nil) async throws -> Data? {
         guard let stringUrl = url, let url = URL(string: stringUrl) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

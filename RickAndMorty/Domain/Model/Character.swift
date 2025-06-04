@@ -16,18 +16,6 @@ struct Character: Codable, Equatable {
     let location: LocationName
     let image: String
     let episode: [String]
-
-    init(id: Int, name: String, status: String, gender: String, origin: LocationName, location: LocationName, image: String, episode: [String]) {
-        self.id = id
-        self.name = name
-        self.status = status
-        self.gender = gender
-        self.origin = origin
-        self.location = location
-        self.image = image
-        self.episode = episode
-    }
-
     var isFavorite: Bool?
 }
 

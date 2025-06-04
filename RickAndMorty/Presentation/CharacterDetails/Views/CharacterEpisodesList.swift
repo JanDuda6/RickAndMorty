@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct CharacterEpisodesList: View {
-    @StateObject var store: StoreOf<CharacterDetailReducer>
+    var store: StoreOf<CharacterDetailReducer>
 
     var body: some View {
         Section {
@@ -31,9 +31,11 @@ struct CharacterEpisodesList: View {
     }
 }
 
-#Preview {
-    let store = Store(initialState: CharacterDetailReducer.State(episodes: [MockModels.episode])) {
-        CharacterDetailReducer()
+#if DEBUG
+    #Preview {
+        let store = Store(initialState: CharacterDetailReducer.State(episodes: [MockModels.episode])) {
+            CharacterDetailReducer()
+        }
+        CharacterEpisodesList(store: store)
     }
-    CharacterEpisodesList(store: store)
-}
+#endif

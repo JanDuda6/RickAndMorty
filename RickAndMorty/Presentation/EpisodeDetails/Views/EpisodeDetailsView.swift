@@ -26,6 +26,8 @@ struct EpisodeDetailsView: View {
     }
 }
 
-#Preview {
-    EpisodeDetailsView(detailsList: MockModels.detailsList, title: "Rixty Minutes")
-}
+#if DEBUG
+    #Preview {
+        EpisodeDetailsView(detailsList: MockModels.detailsList, title: "Rixty Minutes")
+    }
+#endif

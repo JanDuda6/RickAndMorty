@@ -10,11 +10,4 @@ struct DetailsList: Hashable {
     var title: String?
     var subtitle: String?
     var isClicable: Bool
-    
-    init(icon: String, title: String?, subtitle: String?, isClicable: Bool) {
-        self.icon = icon
-        self.title = title
-        self.subtitle = subtitle
-        self.isClicable = isClicable
-    }
 }

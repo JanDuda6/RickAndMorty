@@ -35,6 +35,8 @@ struct CharacterTopImageView: View {
     }
 }
 
-#Preview {
-    CharacterTopImageView(character: MockModels.character)
-}
+#if DEBUG
+    #Preview {
+        CharacterTopImageView(character: MockModels.character)
+    }
+#endif

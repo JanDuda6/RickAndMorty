@@ -10,7 +10,7 @@ import Dependencies
 import SwiftUI
 
 struct CharacterDetailsView: View {
-    @StateObject var store = Store(
+    var store = Store(
         initialState: CharacterDetailReducer.State()) {
             CharacterDetailReducer()
         }
@@ -20,11 +20,11 @@ struct CharacterDetailsView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             CharacterTopImageView(character: character)
-            Spacer().frame(height: 10)
+            Spacer().padding(.bottom, 10)
             VStack(alignment: .leading) {
                 DetailsListView(sectionTitle: "Details", detailsList: store.characterDetailsList)
                     .padding(.horizontal, 16)
-                Spacer().frame(height: 30)
+                Spacer().padding(.bottom, 30)
 
                 switch store.dataState {
                 case .loading:
@@ -73,9 +73,11 @@ struct CharacterDetailsView: View {
     }
 }
 
-#Preview {
-    let store = Store(initialState: CharacterDetailReducer.State(characterDetailsList: MockModels.detailsList)) {
-        CharacterDetailReducer()
+#if DEBUG
+    #Preview {
+        let store = Store(initialState: CharacterDetailReducer.State(characterDetailsList: MockModels.detailsList)) {
+            CharacterDetailReducer()
+        }
+        CharacterDetailsView(store: store, character: MockModels.character)
     }
-    CharacterDetailsView(store: store, character: MockModels.character)
-}
+#endif

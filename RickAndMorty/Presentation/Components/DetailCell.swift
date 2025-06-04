@@ -38,14 +38,16 @@ struct DetailCell: View {
                     .frame(width: 20, height: 20)
                     .padding(.trailing, 20)
             }
-
-        }.frame(height: 70)
-            .background(Color.lightGray)
-            .cornerRadius(20)
-            .tint(.black)
+        }
+        .frame(height: 70)
+        .background(Color.lightGray)
+        .cornerRadius(20)
+        .tint(.black)
     }
 }
 
-#Preview {
-    DetailCell(details: MockModels.detailsList.first!)
-}
+#if DEBUG
+    #Preview {
+        DetailCell(details: MockModels.detailsList.first!)
+    }
+#endif
